@@ -8,7 +8,7 @@
 <link rel="manifest" href="admin-manifest.webmanifest">
 <link rel="icon" type="image/png" href="admin-icon-192.png">
 <link rel="apple-touch-icon" href="admin-icon-192.png">
-<title>Администратор Б-56</title>
+<title>Администратор · Бугуруслан всё в одном месте</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -208,7 +208,7 @@ function catName(id) { for (var i = 0; i < CATS.length; i++) if (CATS[i].id === 
 /*DEMO-START*/
 function ago(n) { var d = new Date(Date.now() - n * 86400000); return d.toISOString().slice(0, 10); }
 function agoT(min) { return new Date(Date.now() - min * 60000 + 5 * 3600000).toISOString().slice(0, 19); }
-var D = { tickets: [{ id: "2026101310001", date: agoT(10), kind: "Заявка владельца", name: "Иван", contact: "+7 900 111-22-33", biz: "Шиномонтаж «Круг»", msg: "Хочу карточку в приложении", pid: "", done: false }, { id: "2026101309002", date: "2026-10-12T16:20:00", kind: "Вопрос", name: "", contact: "@anna", biz: "", msg: "Как узнать результаты розыгрыша?", pid: "Б56-48213", done: true }], news: [
+var D = { tickets: [{ id: "2026101310001", date: agoT(10), kind: "Заявка владельца", name: "Иван", contact: "+7 900 111-22-33", biz: "Шиномонтаж «Круг»", msg: "Хочу карточку в приложении", pid: "", done: false }, { id: "2026101309002", date: "2026-10-12T16:20:00", kind: "Вопрос", name: "", contact: "@anna", biz: "", msg: "Как узнать результаты розыгрыша?", pid: "БУГ-48213", done: true }], news: [
   { id: "20261012100002", date: ago(1), type: "Акция", title: "Салон красоты «Красотка» дарит скидку 10%", text: "На все услуги до конца месяца.", org: "Салон красоты «Красотка»", until: ago(-18), expired: false },
   { id: "20261010100001", date: ago(3), type: "Новость", title: "В приложении появились новые разделы", text: "Кондитеры, бани и сауны, фото и видео, курсы.", org: "", until: "", expired: false } ], seq: 5, places: [
   { id: 10, cat: "okna", name: "Светлый дом: окна, двери, жалюзи", about: "Окна, двери, балконы, жалюзи.", addr: "ул. Коммунистическая, 22", phone: "+7 (922) 857-20-99", hours: "Пн–Пт 09:00–18:00 (обед 13:00–14:00), Сб 10:00–15:00, Вс выходной", rec: true, priceText: "Пластиковые окна | от 5 000 ₽\nДвери ПВХ | от 13 500 ₽", site: "https://svetly-dom.ru", vk: "https://vk.ru/svetlydom", chk: ago(5), upd: ago(5), photoIds: ["a1"], photos: ["data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='60'><rect width='80' height='60' fill='%23DCEFE2'/></svg>"] },
@@ -230,7 +230,7 @@ function demoCall(o) {
       if (a === "urgent_move") { var ug2 = (D.urg || []), ui2 = -1; ug2.forEach(function (x, k) { if (x.id === Number(o.id)) ui2 = k; }); var uj = ui2 + Number(o.dir); if (ui2 >= 0 && uj >= 0 && uj < ug2.length && ug2[uj].g === ug2[ui2].g) { var tt = ug2[ui2]; ug2[ui2] = ug2[uj]; ug2[uj] = tt; } return res({ ok: true }); }
       if (a === "urgent_check") return res({ ok: true });
       if (a === "stories_admin") { D.st = D.st || { cfg: { price: 100, partners: true, limit: 3 }, seq: 4, items: [
-        { id: 1, au: "b56", photo: "", video: "https://vk.com/clip-1_2", text: "Добро пожаловать в Б-56", btn: "", link: "", from: agoT(60).slice(0, 19), till: agoT(-1380).slice(0, 19), st: "опубликовано", order: 1, created: agoT(60), reason: "", src: "admin", sum: 0 },
+        { id: 1, au: "b56", photo: "", video: "https://vk.com/clip-1_2", text: "Добро пожаловать в «Бугуруслан»", btn: "", link: "", from: agoT(60).slice(0, 19), till: agoT(-1380).slice(0, 19), st: "опубликовано", order: 1, created: agoT(60), reason: "", src: "admin", sum: 0 },
         { id: 2, au: "10", photo: "", video: "", text: "Свежая выпечка до 18:00", btn: "call", link: "", from: agoT(30).slice(0, 19), till: agoT(-1400).slice(0, 19), st: "опубликовано", order: 1, created: agoT(30), reason: "", src: "admin", sum: 0 },
         { id: 3, au: "10", photo: "", video: "", text: "Новая коллекция", btn: "card", link: "", from: agoT(20).slice(0, 19), till: agoT(-1400).slice(0, 19), st: "ждёт оплаты", order: 2, created: agoT(20), reason: "", src: "owner", sum: 150 }] }; var now0 = agoT(0).slice(0, 19); D.st.items.forEach(function (x) { x.eff = x.st === "опубликовано" ? (x.till <= now0 ? "архив" : x.from > now0 ? "запланировано" : "опубликовано") : x.st; x.views = x.views || 0; x.clicks = x.clicks || 0; }); return res({ ok: true, items: JSON.parse(JSON.stringify(D.st.items)), cfg: D.st.cfg, now: now0 }); }
       if (a === "story_cfg") { D.st = D.st || { cfg: {}, items: [] }; if (o.set) D.st.cfg = { price: Number(o.price), limit: Number(o.limit), partners: !!o.partners }; return res({ ok: true, cfg: D.st.cfg }); }
@@ -255,7 +255,7 @@ function demoCall(o) {
       if (a === "place_del") { D.places = D.places.filter(function (x) { return x.id !== Number(o.id); }); return res({ ok: true }); }
       if (a === "owners_admin") { D.own = D.own || [{ email: "ivan@mail.ru", date: agoT(120), status: "ждёт", pid: 0, name: "Иван", phone: "8 900 000-00-00", edit: "", req: { type: "new", place: { cat: "avto", name: "Автосервис «Мотор»", phone: "8 900 000-00-00", addr: "ул. Мира, 5", hours: "Пн–Пт 9–18", about: "Ремонт легковых авто." } } }, { email: "olga@mail.ru", date: "2026-10-21T10:00:00", status: "подтверждён", pid: 10, placeName: "Светлый дом", name: "Ольга", phone: "8 900 111-11-11", edit: "2026-10-22", req: null }]; return res({ ok: true, items: D.own }); }
       if (a === "owner_set") { (D.own || []).forEach(function (x) { if (x.email === o.email) { if (o.act === "approve") { x.status = "подтверждён"; x.pid = 1; x.placeName = "Автосервис «Мотор»"; } else if (o.act === "reject") x.status = "отклонён"; else if (o.act === "unlink") x.status = "вошёл"; } }); if (o.act === "delete") D.own = (D.own || []).filter(function (x) { return x.email !== o.email; }); return res({ ok: true }); }
-      if (a === "ads_admin") { D.ads = D.ads || [{ id: "20261019100001", date: agoT(60), cat: "prodazha", title: "Детская коляска", text: "Состояние хорошее.", price: "5 000 ₽", contact: "+7 900 000-00-00", name: "Мария", photos: [], status: "ждёт оплаты", sum: "100", pid: "Б56-12345" }, { id: "20261019100002", date: agoT(3000), cat: "tehnika", title: "Телевизор", text: "Рабочий.", price: "7 000 ₽", contact: "8 900 000-00-01", name: "Пётр", photos: [], status: "опубликовано", sum: "100", till: ago(-3) }, { id: "20261019100003", date: agoT(5000), cat: "avto", title: "Шины", text: "Зимние.", price: "9 000 ₽", contact: "8 900 000-00-02", name: "Олег", photos: [], status: "отклонено", sum: "100", reason: "Не соответствует правилам" }]; return res({ ok: true, items: D.ads }); }
+      if (a === "ads_admin") { D.ads = D.ads || [{ id: "20261019100001", date: agoT(60), cat: "prodazha", title: "Детская коляска", text: "Состояние хорошее.", price: "5 000 ₽", contact: "+7 900 000-00-00", name: "Мария", photos: [], status: "ждёт оплаты", sum: "100", pid: "БУГ-12345" }, { id: "20261019100002", date: agoT(3000), cat: "tehnika", title: "Телевизор", text: "Рабочий.", price: "7 000 ₽", contact: "8 900 000-00-01", name: "Пётр", photos: [], status: "опубликовано", sum: "100", till: ago(-3) }, { id: "20261019100003", date: agoT(5000), cat: "avto", title: "Шины", text: "Зимние.", price: "9 000 ₽", contact: "8 900 000-00-02", name: "Олег", photos: [], status: "отклонено", sum: "100", reason: "Не соответствует правилам" }]; return res({ ok: true, items: D.ads }); }
       if (a === "ad_set" && (o.act === "delete" || o.act === "clear")) { D.ads = (D.ads || []).filter(function (x) { return o.act === "delete" ? x.id !== o.id : (x.status !== "отклонено" && x.status !== "снято"); }); return res({ ok: true }); }
       if (a === "ad_set") { (D.ads || []).forEach(function (x) { if (x.id === o.id) { x.status = o.act === "paid" ? "оплачено" : o.act === "reject" ? "отклонено" : o.act === "remove" ? "снято" : "опубликовано"; if (o.act === "publish" || o.act === "extend") x.till = ago(-5); } }); return res({ ok: true }); }
       if (a === "tickets_list") return res({ ok: true, items: D.tickets });
@@ -267,9 +267,9 @@ function demoCall(o) {
       if (a === "stats") { var days = []; for (var i = 13; i >= 0; i--) days.push({ d: ago(i), n: [0, 1, 0, 2, 3, 1, 4, 2, 5, 3, 6, 4, 7, 9][13 - i] });
         var r = { ok: true, total: 47, roles: { "житель": 31, "владелец": 9, "не выбрано": 7 }, plats: { android: 33, iphone: 14 }, srcs: { "QR Android": 22, "QR iPhone": 11, "напрямую": 14 }, days: days, events: { card_open: 120, call_click: 31, news_open: 64 },
           orgs: [{ org: "Светлый дом: окна, двери, жалюзи", views: 14, prices: 31, calls: 5, routes: 6, links: 9 }, { org: "Сайты и приложения", views: 34, prices: 12, calls: 8, routes: 0, links: 5 }] };
-        if (role === "admin") r.recent = [{ id: "Б56-48213", date: ago(0) + " 09:12", role: "житель", plat: "android", src: "QR Android" }, { id: "Б56-90417", date: ago(0) + " 08:40", role: "владелец", plat: "iphone", src: "QR iPhone" }];
+        if (role === "admin") r.recent = [{ id: "БУГ-48213", date: ago(0) + " 09:12", role: "житель", plat: "android", src: "QR Android" }, { id: "БУГ-90417", date: ago(0) + " 08:40", role: "владелец", plat: "iphone", src: "QR iPhone" }];
         return res(r); }
-      if (a === "draw") { var w = []; for (var k = 0; k < Math.min(10, o.n || 1); k++) w.push("Б56-" + (10000 + Math.floor(Math.random() * 90000))); return res({ ok: true, winners: w, total: 47 }); }
+      if (a === "draw") { var w = []; for (var k = 0; k < Math.min(10, o.n || 1); k++) w.push("БУГ-" + (10000 + Math.floor(Math.random() * 90000))); return res({ ok: true, winners: w, total: 47 }); }
       res({ ok: false, err: "?" });
     }, 120);
   });
@@ -969,7 +969,7 @@ function drawTab() {
 }
 
 /* ---------- истории ---------- */
-function stAuthor(au) { if (au === "b56") return "Б-56"; var p = PLACES.filter(function (x) { return String(x.id) === String(au); })[0]; return p ? p.name : "Заведение №" + au; }
+function stAuthor(au) { if (au === "b56") return "Администратор"; var p = PLACES.filter(function (x) { return String(x.id) === String(au); })[0]; return p ? p.name : "Заведение №" + au; }
 function stWhen(v) { v = String(v || ""); return v.length >= 16 ? v.slice(8, 10) + "." + v.slice(5, 7) + " " + v.slice(11, 16) : ""; }
 function stPend(x) { return x.st === "на проверке" || x.st === "ждёт оплаты"; }
 function stSeen(x) { return x.src === "owner" && x.st === "опубликовано" && !x.seen; }
@@ -999,11 +999,11 @@ function stCard(x) {
 }
 function stForm() {
   var e = STO.edit, f = function (k) { return esc(e[k] || ""); }, cur = e.id ? true : false;
-  var au = '<option value="">— выберите —</option><option value="b56"' + (e.au === "b56" ? " selected" : "") + ">Б-56 (от администратора)</option>" + PLACES.slice().sort(function (a, b) { return String(a.name).localeCompare(String(b.name), "ru"); }).map(function (p) { return '<option value="' + p.id + '"' + (String(e.au) === String(p.id) ? " selected" : "") + ">" + esc(p.name) + "</option>"; }).join("");
+  var au = '<option value="">— выберите —</option><option value="b56"' + (e.au === "b56" ? " selected" : "") + ">От администратора</option>" + PLACES.slice().sort(function (a, b) { return String(a.name).localeCompare(String(b.name), "ru"); }).map(function (p) { return '<option value="' + p.id + '"' + (String(e.au) === String(p.id) ? " selected" : "") + ">" + esc(p.name) + "</option>"; }).join("");
   return '<form class="card" id="stf"><h2>' + (cur ? "Изменить историю" : "Новая история") + "</h2>" +
     '<label>От кого<select id="sau">' + au + "</select></label>" +
     '<div id="stbw"' + (e.au === "b56" ? "" : " hidden") + ' style="display:flex;flex-direction:column;gap:12px">' +
-    '<label>Подпись кружка<small>до 12 знаков, обязательно для историй от Б-56. Например: Срочно</small><input id="slb" maxlength="12" value="' + f("label") + '"></label>' +
+    '<label>Подпись кружка<small>до 12 знаков, обязательно для историй от администратора. Например: Срочно</small><input id="slb" maxlength="12" value="' + f("label") + '"></label>' +
     '<label>Обложка кружка<small>картинка для кружка. Если не загрузить, возьмём фото или первый кадр видео</small><input id="scv" type="file" accept="image/*"></label>' +
     (e.coverId ? '<label class="check"><input type="checkbox" id="scr"' + (e.rmc ? " checked" : "") + '> Убрать загруженную обложку <img src="' + esc(e.cover) + '" alt="" style="width:34px;height:34px;border-radius:50%;object-fit:cover;vertical-align:middle"></label>' : "") + "</div>" +
     '<label>Фото<small>вертикальное смотрится лучше. Нужно фото, видео файлом или ссылка на видео</small><input id="sfile" type="file" accept="image/*"></label>' +
@@ -1094,7 +1094,7 @@ function navHtml() {
 }
 function mainView() {
   var body = ED ? editorView() : TAB === "places" ? placesView() : TAB === "inbox" ? inboxView() : TAB === "pub" ? pubView() : statsTab();
-  var top = ED ? "" : '<div class="top" style="gap:8px"><div class="who">Администратор Б-56' + (DEMO ? " · пробный режим" : "") + '</div><button type="button" class="btn alt sm" data-out="1" style="min-height:44px;font-size:14px">Выйти</button></div>';
+  var top = ED ? "" : '<div class="top" style="gap:8px"><div class="who">Администратор · Бугуруслан всё в одном месте' + (DEMO ? " · пробный режим" : "") + '</div><button type="button" class="btn alt sm" data-out="1" style="min-height:44px;font-size:14px">Выйти</button></div>';
   return top + (MSG ? '<div class="msg' + (MSG.err ? " err" : "") + '">' + esc(MSG.t) + "</div>" : "") + body;
 }
 function draw(force) {
